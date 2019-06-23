@@ -16,7 +16,7 @@ public class Film {
 	private double replacementCost;
 	private String rating;
 	private String specialFeatures;
-	private List<Actor> actors;
+	private List<Actor> filmActors;
 	
 	public Film() {}
 	
@@ -124,6 +124,14 @@ public class Film {
 		this.specialFeatures = specialFeatures;
 	}
 
+	public List<Actor> getActors() {
+		return filmActors;
+	}
+	
+	public void setActors(List<Actor> actors) {
+		this.filmActors = actors;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -198,20 +206,4 @@ public class Film {
 				+ ", length=" + length + ", replacementCost=" + replacementCost + ", rating=" + rating
 				+ ", specialFeatures=" + specialFeatures + "]";
 	}
-
-	public List<Actor> getActors() {
-		return actors;
-	}
-
-	public void setActors(List<Actor> actors) {
-		this.actors = actors;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
 }
