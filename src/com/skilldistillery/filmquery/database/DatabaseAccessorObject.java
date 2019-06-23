@@ -18,6 +18,10 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			e.printStackTrace();
 		}
 	}
+	public Film generalSearch(String searchWord) {
+		return null;
+		
+	}
 
 	public Film findFilmById(int filmId) throws SQLException {
 		Film film = null;
@@ -46,11 +50,11 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			film.setSpecialFeatures(filmResult.getString("special_features"));
 		}
 		
-		findActorsByFilmId(filmId);
-
 		filmResult.close();
 		pstmt.close();
 		conn.close();
+
+		film.setFilmActors(findActorsByFilmId(filmId));
 
 		return film;
 

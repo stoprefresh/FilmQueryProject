@@ -124,11 +124,11 @@ public class Film {
 		this.specialFeatures = specialFeatures;
 	}
 
-	public List<Actor> getActors() {
+	public List<Actor> getFilmActors() {
 		return filmActors;
 	}
 	
-	public void setActors(List<Actor> actors) {
+	public void setFilmActors(List<Actor> actors) {
 		this.filmActors = actors;
 	}
 	
