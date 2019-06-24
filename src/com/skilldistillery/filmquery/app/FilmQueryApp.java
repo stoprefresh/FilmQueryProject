@@ -32,38 +32,37 @@ public class FilmQueryApp {
 	// This will be used for input logic and for calling methods from DAO
 	private void startUserInterface(Scanner input) throws SQLException {
 		boolean stayInSystem = true;
-
+		String selection = "";
 		System.out.println("Welcome");
 		System.out.println();
 		System.out.println();
-
+		System.out.println("Would you like to search the database?");
+		System.out.println("Enter 'y' for yes and 'n' for no");
+		
 		while (stayInSystem == true) {
 
 			menuOptions();
+			selection = input.nextLine();
 			
-			switch (input.nextLine()) {
-
-			case "0":
+			if(selection.contentEquals("0")) {
 				System.out.println("\nThank you.");
 				System.out.println("Goodbye..");
 				stayInSystem = false;
-				break;
-
-			case "1":
+			}
+			else if(selection.contentEquals("1")) {
 				System.out.println("Please enter a ID to search for a film:\n");
 				db.findFilmById(input.nextInt());
 				System.out.println("\n\n");
-				break;
-
-			case "2":
+				stayInSystem = true;
+			}
+			else if (selection.contentEquals("2")) {
 				System.out.println("Please enter a keyword you would like to search  with:\n");
 				db.generalSearch(input.nextLine());
 				System.out.println("\n\n");
-				break;
-
-			default:
+				stayInSystem = true;
+			}
+			else {
 				System.out.println("Enter a valid selection\n\n");
-				
 			}
 		}
 	}

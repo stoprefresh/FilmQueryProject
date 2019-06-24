@@ -54,6 +54,9 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				film.setFilmActors(findActorsByFilmId(film.getId()));
 				System.out.println("---------------\n");
 			}
+		}
+		if(film == null) {
+			System.out.println("No matches found.\n\n");
 			
 		}
 		filmResult.close();
