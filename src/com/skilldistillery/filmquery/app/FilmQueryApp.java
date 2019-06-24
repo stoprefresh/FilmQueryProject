@@ -36,8 +36,6 @@ public class FilmQueryApp {
 		System.out.println("Welcome");
 		System.out.println();
 		System.out.println();
-		System.out.println("Would you like to search the database?");
-		System.out.println("Enter 'y' for yes and 'n' for no");
 		
 		while (stayInSystem == true) {
 
