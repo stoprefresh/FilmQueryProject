@@ -17,6 +17,7 @@ public class Film {
 	private String rating;
 	private String specialFeatures;
 	private List<Actor> filmActors;
+	private String language;
 	
 	public Film() {}
 	
@@ -201,9 +202,17 @@ public class Film {
 
 	@Override
 	public String toString() {
-		return "Film [id=" + id + ", title=" + title + ", description=" + description + ", releaseYear=" + releaseYear
-				+ ", langId=" + langId + ", rentalDuration=" + rentalDuration + ", rentalRate=" + rentalRate
-				+ ", length=" + length + ", replacementCost=" + replacementCost + ", rating=" + rating
-				+ ", specialFeatures=" + specialFeatures + "]";
+		return "Film ID: " + id + "\nTitle: " + title + " \nDescription: " + description + "\nYear Released: " + releaseYear
+				+ "\nRating: " +  rating + "\nLanguage: " + language + "\n";
 	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+
+
 }
