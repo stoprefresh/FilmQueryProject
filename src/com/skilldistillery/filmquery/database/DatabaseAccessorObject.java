@@ -54,6 +54,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				film.setFilmActors(findActorsByFilmId(film.getId()));
 				System.out.println("---------------\n");
 			}
+			
 		}
 		filmResult.close();
 		pstmt.close();
@@ -120,7 +121,6 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			actor.setId(actorResult.getInt("id"));
 			actor.setFirstName(actorResult.getString("first_name"));
 			actor.setLastName(actorResult.getString("last_name"));
-
 		}
 
 		actorResult.close();
@@ -130,9 +130,8 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		return actor;
 	}
 
-	// Pull in Actor method to generate the array of Actors accociated with the
-	// movie
-	public List<Actor> findActorsByFilmId(int filmId) { // Make changes for this to work
+	// Pull in Actor method to generate the array of Actors accociated with the movie
+	public List<Actor> findActorsByFilmId(int filmId) { 
 		List<Actor> filmActors = new ArrayList<>();
 		Actor actor = null;
 		try {

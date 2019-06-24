@@ -1,7 +1,6 @@
 package com.skilldistillery.filmquery.app;
 
 import java.sql.SQLException;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.skilldistillery.filmquery.database.DatabaseAccessor;
@@ -33,22 +32,16 @@ public class FilmQueryApp {
 	// This will be used for input logic and for calling methods from DAO
 	private void startUserInterface(Scanner input) throws SQLException {
 		boolean stayInSystem = true;
-		String selection = "";
+
 		System.out.println("Welcome");
 		System.out.println();
 		System.out.println();
 
 		while (stayInSystem == true) {
 
-			System.out.println("Please make selection: ");
-			System.out.println("0. Exit");
-			System.out.println("1. By Film ID");
-			System.out.println("2. By KeyWord");
-			System.out.println("_______________________");
-
-			selection = input.nextLine();
-
-			switch (selection) {
+			menuOptions();
+			
+			switch (input.nextLine()) {
 
 			case "0":
 				System.out.println("\nThank you.");
@@ -58,30 +51,28 @@ public class FilmQueryApp {
 
 			case "1":
 				System.out.println("Please enter a ID to search for a film:\n");
-				try {
-					db.findFilmById(input.nextInt());
-					break;
-				} catch (InputMismatchException e) {
-					System.out.println("Invalid Input\n\n");
-					break;
-				}
+				db.findFilmById(input.nextInt());
+				System.out.println("\n\n");
+				break;
 
 			case "2":
 				System.out.println("Please enter a keyword you would like to search  with:\n");
-				try {
-					db.generalSearch(input.nextLine());
-					System.out.println("\n\n");
-					break;
-				} catch (InputMismatchException e) {
-					System.out.println("Invalid Input\n\n");
-					break;
-				}
+				db.generalSearch(input.nextLine());
+				System.out.println("\n\n");
+				break;
 
 			default:
 				System.out.println("Enter a valid selection\n\n");
-				break;
+				
 			}
-			System.out.println("Hit any key to continue" + input.nextLine());
 		}
+	}
+
+	private void menuOptions() {
+		System.out.println("Please make selection: ");
+		System.out.println("0. Exit");
+		System.out.println("1. By Film ID");
+		System.out.println("2. By KeyWord");
+		System.out.println("_______________________");
 	}
 }
