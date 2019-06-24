@@ -18,12 +18,48 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			e.printStackTrace();
 		}
 	}
-	public Film generalSearch(String searchWord) {
-		return null;
+	
+	 
+	public void generalSearch(String searchWord) throws SQLException {
+		List <Film> films = new ArrayList<>();
+		Film film = null;
+		Connection conn = DriverManager.getConnection(url, user,pass);
 		
+		String sql = "SELECT id, title, description, release_year, language_id, rental_duration,"
+				+ " rental_rate, length, replacement_cost, rating, special_features FROM film" 
+				+ " WHERE title LIKE ? OR description LIKE ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setString(1, "%" + searchWord + "%");
+		pstmt.setString(2, "%" + searchWord + "%");
+		
+		ResultSet filmResult = pstmt.executeQuery();
+		
+		while (filmResult.next()) {
+				film = new Film();
+				film.setId(filmResult.getInt("id"));
+				film.setTitle(filmResult.getString("title"));
+				film.setDescription(filmResult.getString("description"));
+				film.setReleaseYear(filmResult.getInt("release_year"));
+				film.setLangId(filmResult.getInt("language_id"));
+				film.setRentalDuration(filmResult.getInt("rental_duration"));
+				film.setRentalRate(filmResult.getDouble("rental_rate"));
+				film.setLength(filmResult.getInt("length"));
+				film.setReplacementCost(filmResult.getDouble("replacement_cost"));
+				film.setRating(filmResult.getString("rating"));
+				film.setSpecialFeatures(filmResult.getString("special_features"));
+				
+				System.out.println(film);
+			
+		}
+		filmResult.close();
+		pstmt.close();
+		conn.close();
+	
 	}
 
 	public Film findFilmById(int filmId) throws SQLException {
+		
 		Film film = null;
 		Connection conn = DriverManager.getConnection(url, user, pass);
 
@@ -54,7 +90,9 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		pstmt.close();
 		conn.close();
 
-		film.setFilmActors(findActorsByFilmId(filmId));
+		if(film != null) {
+			film.setFilmActors(findActorsByFilmId(filmId));
+		}
 
 		return film;
 
@@ -72,9 +110,9 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 
 		if (actorResult.next()) {
 			actor = new Actor();
-			actor.setId(actorResult.getInt(""));
-			actor.setFirstName(actorResult.getString(""));
-			actor.setLastName(actorResult.getString(""));
+			actor.setId(actorResult.getInt("id"));
+			actor.setFirstName(actorResult.getString("first_name"));
+			actor.setLastName(actorResult.getString("last_name"));
 		}
 
 		actorResult.close();
