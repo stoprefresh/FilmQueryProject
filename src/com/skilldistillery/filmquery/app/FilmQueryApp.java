@@ -36,32 +36,33 @@ public class FilmQueryApp {
 		System.out.println("Welcome");
 		System.out.println();
 		System.out.println();
-		
+		menuOptions();
 		while (stayInSystem == true) {
-
-			menuOptions();
-			selection = input.nextLine();
 			
-			if(selection.contentEquals("0")) {
+			
+			selection = input.nextLine();
+
+			if (selection.equals("0")) {
 				System.out.println("\nThank you.");
 				System.out.println("Goodbye..");
 				stayInSystem = false;
-			}
-			else if(selection.contentEquals("1")) {
+			
+			} else if (selection.equals("1")) {
 				System.out.println("Please enter a ID to search for a film:\n");
 				db.findFilmById(input.nextInt());
-				System.out.println("\n\n");
+				System.out.println("\n");
+				menuOptions();
 				stayInSystem = true;
-			}
-			else if (selection.contentEquals("2")) {
+				
+			} else if (selection.equals("2")) {
 				System.out.println("Please enter a keyword you would like to search  with:\n");
 				db.generalSearch(input.nextLine());
-				System.out.println("\n\n");
+				System.out.println("\n");
+				menuOptions();
 				stayInSystem = true;
+				
 			}
-			else {
-				System.out.println("Enter a valid selection\n\n");
-			}
+			
 		}
 	}
 
